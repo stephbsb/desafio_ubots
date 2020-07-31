@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
 import { getClients, getHistory } from "./shared/gateway/ApiGateway";
-import Problem1 from "./components/problems/Problem1";
-import Problem2 from "./components/problems/Problem2";
-import Problem3 from "./components/problems/Problem3";
-import Problem4 from "./components/problems/Problem4";
+import Problem1 from "./components/problems/problem1/Problem1";
+import Problem2 from "./components/problems/problem2/Problem2";
+import Problem3 from "./components/problems/problem3/Problem3";
+import Problem4 from "./components/problems/problem4/Problem4";
 
 import "./App.css";
 import Navigation from "./components/navigation/Navigation";
