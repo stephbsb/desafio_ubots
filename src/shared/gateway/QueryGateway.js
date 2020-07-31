@@ -1,6 +1,8 @@
 /* Este arquivo simula logica de querys a banco de dados */
 /* As funções recebem uma lista e um filtro e retornam o objeto filtrado */
 
+/* FUNÇÕES COMPARTILHADAS  */
+
 const getClientByCpf = (clients, clientCpf) => {
   if (!clientCpf.includes("-")) {
     clientCpf = "000.000.000-" + clientCpf.split(".").pop();
@@ -25,6 +27,19 @@ const getHistoryByClient = (history, clientCpf) => {
   });
 };
 
+export const getOrderedList = (list, attribute, orderOption) => {
+  const orderedList = list.sort(function (a, b) {
+    if (orderOption === "DEC") {
+      return b[attribute] - a[attribute];
+    } else {
+      return a[attribute] - b[attribute];
+    }
+  });
+
+  return orderedList;
+};
+
+/* problem 1 */
 export const getClientTotalValue = (clients, history) => {
   const list = clients.map((client) => {
     const ClientHistory = getHistoryByClient(history, client.cpf);
@@ -43,37 +58,7 @@ export const getClientTotalValue = (clients, history) => {
   return list;
 };
 
-export const getClientHistoryList = (clients, history) => {
-  const list = clients.map((client) => {
-    const ClientHistory = getHistoryByClient(history, client.cpf);
-
-    const totalValue = ClientHistory.reduce(function (prevVal, historyItem) {
-      return prevVal + historyItem.valorTotal;
-    }, 0);
-
-    return {
-      cliente: client,
-      historico: ClientHistory,
-      valorTotal: totalValue,
-    };
-  });
-
-  console.log(list);
-  return list;
-};
-
-export const getOrderedList = (list, attribute, orderOption) => {
-  const orderedList = list.sort(function (a, b) {
-    if (orderOption === "DEC") {
-      return b[attribute] - a[attribute];
-    } else {
-      return a[attribute] - b[attribute];
-    }
-  });
-
-  return orderedList;
-};
-
+/* problem 2 */
 export const getBiggestOrder2016 = (clients, history) => {
   let biggestOrder = { valorTotal: 0 };
 
@@ -93,4 +78,21 @@ export const getBiggestOrder2016 = (clients, history) => {
     cliente: client,
     compra: biggestOrder,
   };
+};
+
+/* problem 3 */
+/* retorna lista de todos os clientes e o historico de compras de cada e a quantidade de compras realizadas*/
+export const getClientHistoryList = (clients, history) => {
+  const list = clients.map((client) => {
+    const ClientHistory = getHistoryByClient(history, client.cpf);
+
+    return {
+      cliente: client,
+      historico: ClientHistory,
+      quantidade: ClientHistory.length,
+    };
+  });
+
+  console.log(list);
+  return list;
 };
