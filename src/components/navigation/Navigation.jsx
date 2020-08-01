@@ -1,34 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
+
+import "./Navigation.css";
 
 const Navigation = ({ onClick }) => {
+  const [activeButton, setActiveButton] = useState();
+
   const onClickHandler = (event) => {
-    event.preventDefault();
     onClick(event.target.id);
+
+    if (event.target.id !== activeButton) {
+      event.target.className = "active";
+      if (activeButton) {
+        document.getElementById(activeButton).className = "";
+      }
+      setActiveButton(event.target.id);
+    }
   };
 
   return (
-    <ul className="navigation">
-      <li>
-        <a id="problem1" href="#!" onClick={onClickHandler}>
-          CLIENTES ORDENADOS PELO VALOR TOTAL DE COMPRAS
-        </a>
-      </li>
-      <li>
-        <a id="problem2" href="#!" onClick={onClickHandler}>
-          CLIENTE COM MAIOR COMPRA ÚNICA NO ÚLTIMO ANO
-        </a>
-      </li>
-      <li>
-        <a id="problem3" href="#!" onClick={onClickHandler}>
-          CLIENTES MAIS FIEIS
-        </a>
-      </li>
-      <li>
-        <a id="problem4" href="#!" onClick={onClickHandler}>
-          RECOMENDE UM VINHO PARA UM CLIENTE
-        </a>
-      </li>
-    </ul>
+    <>
+      <h2 className="navigation-label">
+        Escolha uma das opções abaixo para ver o resultado.
+      </h2>
+      <ul className="navigation">
+        <li>
+          <button id="Problem1" onClick={onClickHandler}>
+            1. CLIENTES ORDENADOS PELO VALOR TOTAL DE COMPRAS
+          </button>
+        </li>
+        <li>
+          <button id="Problem2" onClick={onClickHandler}>
+            2. CLIENTE COM MAIOR COMPRA ÚNICA NO ÚLTIMO ANO
+          </button>
+        </li>
+        <li>
+          <button id="Problem3" onClick={onClickHandler}>
+            3. CLIENTES MAIS FIEIS
+          </button>
+        </li>
+        <li>
+          <button id="Problem4" onClick={onClickHandler}>
+            4. RECOMENDE UM VINHO PARA UM CLIENTE
+          </button>
+        </li>
+      </ul>
+    </>
   );
 };
 

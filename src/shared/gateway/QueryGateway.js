@@ -6,17 +6,18 @@
 const getClientByCpf = (clients, clientCpf) => {
   if (!clientCpf.includes("-")) {
     clientCpf = "000.000.000-" + clientCpf.split(".").pop();
-    console.log("clienteCPF: " + clientCpf);
   }
 
   return clients.find((client) => client.cpf === clientCpf);
 };
 
-const getHistoryByClient = (history, clientCpf) => {
+export const getHistoryByClient = (history, clientCpf) => {
   // cpf na lista de clientes: 000.000.000-XX
   // cpf no histico de compras: 000.000.000.XX ou 0000.000.000.XX (49/50 possuem um zero a mais no inicio)
 
   const clientCpfNew = clientCpf.replace("-", ".");
+
+  const count = 0;
 
   return history.filter((historyItem) => {
     if (historyItem.cliente.length !== clientCpfNew.length) {
@@ -54,7 +55,6 @@ export const getClientTotalValue = (clients, history) => {
     };
   });
 
-  console.log(list);
   return list;
 };
 
@@ -71,7 +71,6 @@ export const getBiggestOrder2016 = (clients, history) => {
     }
   });
 
-  console.log(biggestOrder);
   const client = getClientByCpf(clients, biggestOrder.cliente);
 
   return {
@@ -80,7 +79,7 @@ export const getBiggestOrder2016 = (clients, history) => {
   };
 };
 
-/* problem 3 */
+/* problem 3 e 4 */
 /* retorna lista de todos os clientes e o historico de compras de cada e a quantidade de compras realizadas*/
 export const getClientHistoryList = (clients, history) => {
   const list = clients.map((client) => {
@@ -93,6 +92,7 @@ export const getClientHistoryList = (clients, history) => {
     };
   });
 
-  console.log(list);
   return list;
 };
+
+/* problem 4 */

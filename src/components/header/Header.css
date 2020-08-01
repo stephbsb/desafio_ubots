@@ -1,0 +1,23 @@
+.header {
+  width: 100%;
+  padding: 50px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-content {
+  width: 80%;
+}
+
+.header-content h2 {
+  margin-bottom: 10px;
+}
+
+.header-content ol {
+  padding-left: 40px;
+}
+
+.header-content li {
+  margin-bottom: 10px !important;
+}

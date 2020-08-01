@@ -18,7 +18,7 @@ const Client = ({ client }) => {
   );
 };
 
-const ProblemsSection = ({ clients, history }) => {
+const ProblemsSection = ({ clients, history, className }) => {
   const [loyalClients, setLoyalClients] = useState();
 
   useEffect(() => {
@@ -33,12 +33,12 @@ const ProblemsSection = ({ clients, history }) => {
   }, []);
 
   return (
-    <ul>
+    <ol className={`${className} problem3`}>
       {loyalClients &&
         loyalClients.map((client) => {
           return <Client client={client} />;
         })}
-    </ul>
+    </ol>
   );
 };
 
