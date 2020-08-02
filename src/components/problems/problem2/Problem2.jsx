@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { getBiggestOrder2016 } from "../../../shared/gateway/QueryGateway";
+import { getBiggestOrder2016 } from "./LogicProblem2";
 
 /* Problem2 - Mostre o cliente com maior compra única no último ano (2016) */
 
@@ -12,7 +12,6 @@ const Problem2 = ({ clients, history, className }) => {
   useEffect(() => {
     const biggestOrder2016Client = getBiggestOrder2016(clients, history);
     setOrder(biggestOrder2016Client);
-    console.log(biggestOrder2016Client);
   }, []);
 
   return (

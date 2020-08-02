@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import {
-  getClientHistoryList,
-  getOrderedList,
-} from "../../../shared/gateway/QueryGateway";
+import { getLoyalClients } from "./LogicProblem3";
 
 /* Problem3 - Liste os clientes mais fiéis. */
 /* Verificar os 3 clientes que realizaram o maior numero de pedidos no histórico de compras */
@@ -22,14 +19,9 @@ const ProblemsSection = ({ clients, history, className }) => {
   const [loyalClients, setLoyalClients] = useState();
 
   useEffect(() => {
-    const list = getClientHistoryList(clients, history);
-    const loyalClientsList = getOrderedList(list, "quantidade", "DEC").slice(
-      0,
-      3
-    );
+    const loyalClients = getLoyalClients(clients, history);
 
-    setLoyalClients(loyalClientsList);
-    console.log(loyalClientsList);
+    setLoyalClients(loyalClients);
   }, []);
 
   return (

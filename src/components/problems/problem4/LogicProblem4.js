@@ -1,9 +1,20 @@
-import { getHistoryByClient } from "../../../shared/gateway/QueryGateway";
+/* 
+Descrição: Esta função recebe uma lista e o atributo que deve ser verificado em que ocorre
+maior frequencia de um determinado valor, retorna quantidade de vezes que o atributo se repete e 
+os itens correspondente ao atributo repetido.
 
+Retorna: 
+  [{
+    attributeName: String,
+    quantity: Number,
+    items: Array
+  }]
+
+ */
 const getMostFrequentValueByAttribute = (list, attribute) => {
   const listByAttribute = [];
 
-  list.forEach((item, index) => {
+  list.forEach((item) => {
     let found = false;
 
     if (listByAttribute.length !== 0) {
@@ -42,6 +53,14 @@ const getMostFrequentValueByAttribute = (list, attribute) => {
   return frequentByAttribute;
 };
 
+/* 
+Descrição: Esta função irá receber todos as compras realizadas e irá devolver uma lista com todos os ítens
+comprados.
+
+Retorna: 
+  [{}]
+
+ */
 const getItemsFromHistoryList = (historyList) => {
   let itemsList = [];
 
@@ -50,12 +69,19 @@ const getItemsFromHistoryList = (historyList) => {
       itemsList.push(item);
     })
   );
-  //console.log(itemsList);
+
   return itemsList;
 };
 
+// Função chamada pela view - irá chamar outras funções:
+/* 
+Descrição: Esta função irá chamar as funções getItemsFromHistoryList e getMostFrequentValueByAttribute.
+
+Retorna: 
+  [{Object}]
+ */
 export const getRecomendedWine = (clientHistoryList, selectedClient) => {
-  // Recebe lista com todo o histórico de compras do cliente em um array:
+  // Recebe lista com todo os itens ja comprados pelo cliente em um array:
 
   const clientItemsList = getItemsFromHistoryList(clientHistoryList);
 
@@ -71,6 +97,6 @@ export const getRecomendedWine = (clientHistoryList, selectedClient) => {
     "produto"
   );
 
-  // Retorna os items:
+  // Retorna o último ítem da lista caso haja outros:
   return getRecomendedWine.items[getRecomendedWine.items.length - 1];
 };

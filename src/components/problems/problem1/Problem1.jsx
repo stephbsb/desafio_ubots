@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import {
-  getClientTotalValue,
-  getOrderedList,
-} from "../../../shared/gateway/QueryGateway";
+import { getListOrderedByTotalValue } from "./LogicProblem1";
 
 /* Problem1 - Liste os clientes ordenados pelo maior valor total em compras. */
 
@@ -22,10 +19,8 @@ const Problem1 = ({ clients, history, className }) => {
   const [orderedList, setOrderedList] = useState();
 
   useEffect(() => {
-    const list = getClientTotalValue(clients, history);
-    const orderedListTemp = getOrderedList(list, "valorTotal", "DEC");
+    const orderedListTemp = getListOrderedByTotalValue(clients, history);
     setOrderedList(orderedListTemp);
-    console.log(orderedListTemp[0].cliente.nome);
   }, []);
 
   return (
