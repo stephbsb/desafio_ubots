@@ -37,12 +37,18 @@ Uma função é usada para somar os valores de todas as compras realizadas para 
 a ordem decrescente destes valores
 
 
+![Resultado](problem1.png)
+
+
 ## Mostre o cliente com maior compra única no último ano (2016).
 
 View: https://github.com/stephbsb/desafio_ubots/blob/master/src/components/problems/problem1/Problem2.jsx<br/>
 Código: https://github.com/stephbsb/desafio_ubots/blob/master/src/components/problems/problem2/LogicProblem2.js
 
 Lógica: Todo o historico inicial de compras será pesquisado para retornar o cpf do cliente correspondente à maior compra. Com o cpf do cliente é possivel fazer a busca na lista de clientes gerada inicialmente.
+
+
+![Resultado](problem2.png)
 
 ## Liste os clientes mais fiéis.
 
@@ -52,6 +58,9 @@ Código: https://github.com/stephbsb/desafio_ubots/blob/master/src/components/pr
 Lógica: Defini que mostraria o 3 clientes mais fieis que seria definido pelo maior número de compras realizados.
 Para cada cliente é buscado o numero de compras realizadas. Isto é um array, então usando a função lenght é possivel determinar a quantidade de compras realizadas por cada clientes.
 Apos isso ordenamos a lista em ordem decrescente e usando a função split foi possivel recuperar apenas os tres primeiros clientes da lista.
+
+
+![Resultado](problem3.png)
 
 ## Recomende um vinho para um determinado cliente a partir do histórico de compras.
 
@@ -111,3 +120,6 @@ O interessante é que essa lista de itens retornado pode ser novamente verificad
 };
 
 ```
+
+
+![Resultado](problem4.png)
